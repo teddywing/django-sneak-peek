@@ -22,9 +22,7 @@ class SneakPeekWrapper(Node):
 
     def render(self, context):
         user = context['user']
-        
-        # TODO: update with permission check on user
-        user_is_blessed = True
+        user_is_blessed = user.has_perm('sneak_peek_tag.can_view_sneak_peek')
 
         if user_is_blessed:
             content = self.nodelist.render(context)
