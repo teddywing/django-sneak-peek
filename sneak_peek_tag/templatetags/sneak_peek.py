@@ -26,7 +26,7 @@ class SneakPeekWrapper(Node):
 
         if user_is_blessed:
             content = self.nodelist.render(context)
-            wrapped_hidden_feature = """<div class="sneak-peek %s">
+            wrapped_hidden_feature = """<div class="django-sneak-peek %s">
                 	%s
                 </div>""" % (self.style, content)
             return wrapped_hidden_feature
