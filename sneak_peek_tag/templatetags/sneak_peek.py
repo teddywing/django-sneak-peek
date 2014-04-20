@@ -21,7 +21,7 @@ class SneakPeekWrapper(Node):
         self.style = style
 
     def render(self, context):
-        user = context['request'].user
+        user = context['user']
         
         # TODO: update with permission check on user
         user_is_blessed = True
