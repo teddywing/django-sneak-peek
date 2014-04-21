@@ -3,7 +3,7 @@
 
 
 /* 'Under construction' border around sneak peek features */
-.django-sneak-peek {
+.django-sneak-peek.default {
 	border-style: solid;
 	border-width: 10px;
 	-moz-border-image: url('../images/django-sneak-peek-under-construction-border-image.png') 10 round;
