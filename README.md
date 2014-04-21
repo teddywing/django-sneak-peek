@@ -1,49 +1,53 @@
-= django-sneak-peek
+django-sneak-peek
+=================
+
 A Django template tag that allows you to hide pre-release features but make them available to a select group of users. By adding the "sneak peek" permission to users on your site, you can allow people within your company or trusted individuals to try out and experiment with upcoming features in your application.
 
 
-== Requirements
-[Django]
-	Requires Django 1.4 or higher. Currently <code>django-sneak-peek</code> does not take advantage of the built-in migrations in Django 1.7, but I'll be updating the package to add support for them once 1.7 released.
+## Requirements
+* Django
 
-[South]
-	{South}[https://pypi.python.org/pypi/South/0.8.4] is required for migrations. This package includes a data migration that adds a <code>ContentType</code> and an associated <code>Permission</code>. The permission is used to determine whether or not a user can view sneak peek content.
+	Requires Django 1.4 or higher. Currently `django-sneak-peek` does not take advantage of the built-in migrations in Django 1.7, but I'll be updating the package to add support for them once 1.7 released.
+
+* South
+
+	[South](https://pypi.python.org/pypi/South/0.8.4) is required for migrations. This package includes a data migration that adds a `ContentType` and an associated `Permission`. The permission is used to determine whether or not a user can view sneak peek content.
 
 
-== Installation
-1. Install via <code>pip</code>:
+## Installation
+1. Install via `pip`:
 
-	$ pip install django-sneak-peek
+		$ pip install django-sneak-peek
 
-2. Add <code>sneak_peek_tag</code> to <code>INSTALLED_APPS</code> in <code>settings.py</code>:
+2. Add `sneak_peek_tag` to `INSTALLED_APPS` in `settings.py`:
 
-	INSTALLED_APPS = (
-	    ...
-	    'sneak_peek_tag',
-	    ...
-	)
+		INSTALLED_APPS = (
+		    ...
+		    'sneak_peek_tag',
+		    ...
+		)
 
 3. Run migrations:
 
-	$ python manage.py migrate sneak_peek_tag
+		$ python manage.py migrate sneak_peek_tag
 
-4. Run <code>collectstatic</code> to grab the CSS and image:
+4. Run `collectstatic` to grab the CSS and image:
 
-	$ python manage.py collectstatic
+		$ python manage.py collectstatic
 
 
-== Usage
-<code>django-sneak-peek</code> defines a template tag called <code>sneak_peek</code>. Markup that you want to conditionally hide must be wrapped in this template tag.
+## Usage
+`django-sneak-peek` defines a template tag called `sneak_peek`. Markup that you want to conditionally hide must be wrapped in this template tag.
 
-Add the <code>django-sneak-peek</code> CSS file to all pages where you plan to use the template tag:
+Add the `django-sneak-peek` CSS file to all pages where you plan to use the template tag:
 
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}sneak_peek_tag/css/django-sneak-peek.css" />
 
-Load <code>sneak_peek</code> in your template:
+Load `sneak_peek` in your template:
 
 	{% load sneak_peek %}
 
-Wrap secret markup in <code>sneak_peek</code> tags:
+Wrap secret markup in `sneak_peek` tags:
 
 	{% sneak_peek %}
 	    <div>
@@ -57,8 +61,8 @@ Wrap secret markup in <code>sneak_peek</code> tags:
 	{% endsneak_peek %}
 
 
-== User Permissions
-In order to determine whether to output the markup, <code>django-sneak-peek</code> relies on the <code>sneak_peek_tag.can_view_sneak_peek</code> permission which is installed via the included migration.
+## User Permissions
+In order to determine whether to output the markup, `django-sneak-peek` relies on the `sneak_peek_tag.can_view_sneak_peek` permission which is installed via the included migration.
 
 To allow a user to view sneak peek content, add this permission to their account. This can be done in the Django admin or via the shell:
 
@@ -72,12 +76,12 @@ To allow a user to view sneak peek content, add this permission to their account
 	>>> user.user_permissions.add(permission)
 
 
-== Additional Options
-Sneak peek works by wrapping your code in a <code><div></code> and applying styles to that wrapper with the <code>.django-sneak-peek</code> class and several modifiers. Modifiers change the appearance of the sneak peek block.
+## Additional Options
+Sneak peek works by wrapping your code in a `<div>` and applying styles to that wrapper with the `.django-sneak-peek` class and several modifiers. Modifiers change the appearance of the sneak peek block.
 
 Here are the available modifiers and different combinations thereof.
 
-=== Default
+### Default
 By default, markup under sneak peek will appear with a yellow & black "under construction" border.
 
 	{% sneak_peek %}
@@ -86,8 +90,8 @@ By default, markup under sneak peek will appear with a yellow & black "under con
 	    </div>
 	{% endsneak_peek %}
 
-=== Outline
-Sets <code>border: none;</code> and uses an <code>outline</code> instead
+### Outline
+Sets `border: none;` and uses an `outline` instead
 
 	{% sneak_peek "outline" %}
 	    <div class="buttons">
@@ -95,8 +99,8 @@ Sets <code>border: none;</code> and uses an <code>outline</code> instead
 	    </div>
 	{% endsneak_peek %}
 
-=== Borderless
-Sets <code>border: none;</code>. Markup will appear without superfluous extra styles applied by <code>django-sneak-peek</code>, but will still be surrouded by an <code><div></code> wrapper (as always).
+### Borderless
+Sets `border: none;`. Markup will appear without superfluous extra styles applied by `django-sneak-peek`, but will still be surrouded by an `<div>` wrapper (as always).
 
 	{% sneak_peek "borderless" %}
 	    <div class="buttons">
@@ -104,8 +108,8 @@ Sets <code>border: none;</code>. Markup will appear without superfluous extra st
 	    </div>
 	{% endsneak_peek %}
 
-=== Inline
-Sets <code>display: inline;</code>
+### Inline
+Sets `display: inline;`
 
 	{% sneak_peek "borderless inline" %}
 	    <div class="buttons">
@@ -113,8 +117,8 @@ Sets <code>display: inline;</code>
 	    </div>
 	{% endsneak_peek %}
 
-=== Inline-Block
-Sets <code>display: inline-block;</code>
+### Inline-Block
+Sets `display: inline-block;`
 
 	{% sneak_peek "default inline-block" %}
 	    <div class="buttons">
@@ -123,8 +127,8 @@ Sets <code>display: inline-block;</code>
 	{% endsneak_peek %}
 
 
-== Customising
-As you may have guessed, you can add custom display styles to <code>django-sneak-peek</code>. In addition to overriding the existing CSS classes, you can also create your own.
+## Customising
+As you may have guessed, you can add custom display styles to `django-sneak-peek`. In addition to overriding the existing CSS classes, you can also create your own.
 
 Here's an example of a class you can add to your CSS to add custom styles to a sneak peek element:
 
@@ -140,4 +144,4 @@ This custom class can be applied with:
 	{% endsneak_peek %}
 
 
-== License
+## License
