@@ -3,9 +3,11 @@ A Django template tag that allows you to hide pre-release features but make them
 
 
 == Requirements
-Requires Django 1.4 or higher. Currently not configured for Django 1.7, but I'll be updating the package to add support for it once released.
+[Django]
+	Requires Django 1.4 or higher. Currently <code>django-sneak-peek</code> does not take advantage of the built-in migrations in Django 1.7, but I'll be updating the package to add support for them once 1.7 released.
 
-{South}[https://pypi.python.org/pypi/South/0.8.4] is required for migrations. <code>django-sneak-peek</code> includes a data migration that adds a <code>ContentType</code> and <code>Permission</code>. The permission is used to determine whether or not a user can view sneak peek content.
+[South]
+	{South}[https://pypi.python.org/pypi/South/0.8.4] is required for migrations. This package includes a data migration that adds a <code>ContentType</code> and an associated <code>Permission</code>. The permission is used to determine whether or not a user can view sneak peek content.
 
 
 == Installation
@@ -31,7 +33,7 @@ Requires Django 1.4 or higher. Currently not configured for Django 1.7, but I'll
 
 
 == Usage
-<code>django-sneak-peek</code> defines a template tag called <code>sneak_peek</code>. Markup that you want to conditionally hide gets wrapped in this template tag.
+<code>django-sneak-peek</code> defines a template tag called <code>sneak_peek</code>. Markup that you want to conditionally hide must be wrapped in this template tag.
 
 Add the <code>django-sneak-peek</code> CSS file to all pages where you plan to use the template tag:
 
@@ -48,8 +50,8 @@ Wrap secret markup in <code>sneak_peek</code> tags:
 	        <h1>Secret pre-release feature</h1>
 	        
 	        <p>
-	            This entire div is hidden from users who don't have the 
-	            sneak_peek permission.
+	            This entire div will not appear in the HTML output unless the 
+	            current user has the sneak_peek permission.
 	        </p>
 	    </div>
 	{% endsneak_peek %}
