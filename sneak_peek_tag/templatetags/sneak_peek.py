@@ -1,4 +1,4 @@
-from django.template import Library, Node
+from django.template import Library, Node, TemplateSyntaxError
 
 register = Library()
 
@@ -11,7 +11,7 @@ def sneak_peek(parser, token):
     except ValueError:
         pass
     if not (style[0] == style[-1] and style[0] in ('"', "'")):
-        raise template.TemplateSyntaxError("%r tag's argument should be in quotes" % tag)
+        raise TemplateSyntaxError("%r tag's argument should be in quotes" % tag)
     nodelist = parser.parse(('endsneak_peek',))
     parser.delete_first_token()
     return SneakPeekWrapper(nodelist, style[1:-1])
