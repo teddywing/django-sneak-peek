@@ -5,7 +5,7 @@ register = Library()
 @register.tag(name="sneak_peek")
 def sneak_peek(parser, token):
     tag = None
-    style = 'default'
+    style = '"default"'
     try:
         tag, style = token.split_contents()
     except ValueError:
