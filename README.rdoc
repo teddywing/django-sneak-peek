@@ -55,6 +55,21 @@ Wrap secret markup in <code>sneak_peek</code> tags:
 	{% endsneak_peek %}
 
 
+== User Permissions
+In order to determine whether to output the markup, <code>django-sneak-peek</code> relies on the <code>sneak_peek_tag.can_view_sneak_peek</code> permission which is installed via the included migration.
+
+To allow a user to view sneak peek content, add this permission to their account. This can be done in the Django admin or via the shell:
+
+	>>> from django.contrib.contenttypes.models import ContentType
+	>>> from django.contrib.auth.models import Permission
+	>>> 
+	>>> content_type = ContentType.objects.get(app_label='sneak_peek_tag')
+	>>> permission = Permission.objects.get(content_type=content_type, codename='can_view_sneak_peek')
+	>>> 
+	>>> user = User.objects.get(username='Homer')
+	>>> user.user_permissions.add(permission)
+
+
 == Additional Options
 By default, markup under sneak peek will appear with a yellow and black "under construction" border:
 
