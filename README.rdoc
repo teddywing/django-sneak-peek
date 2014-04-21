@@ -73,31 +73,54 @@ To allow a user to view sneak peek content, add this permission to their account
 
 
 == Additional Options
-By default, markup under sneak peek will appear with a yellow and black "under construction" border:
-
-## Screenshot ##
-
-Sneak peek works by wrapping your code in a <code><div></code> and applying styles to that element with the <code>.django-sneak-peek</code> class and several modifiers.
-
-Modifiers change the appearance of the sneak peek block.
+Sneak peek works by wrapping your code in a <code><div></code> and applying styles to that wrapper with the <code>.django-sneak-peek</code> class and several modifiers. Modifiers change the appearance of the sneak peek block.
 
 Here are the available modifiers and different combinations thereof.
 
+=== Default
+By default, markup under sneak peek will appear with a yellow & black "under construction" border.
+
+	{% sneak_peek %}
+	    <div class="buttons">
+	        <button>Tutorial</button>
+	    </div>
+	{% endsneak_peek %}
+
 === Outline
+Sets <code>border: none;</code> and uses an <code>outline</code> instead
+
+	{% sneak_peek "outline" %}
+	    <div class="buttons">
+	        <button>Tutorial</button>
+	    </div>
+	{% endsneak_peek %}
 
 === Borderless
+Sets <code>border: none;</code>. Markup will appear without superfluous extra styles applied by <code>django-sneak-peek</code>, but will still be surrouded by an <code><div></code> wrapper (as always).
+
+	{% sneak_peek "borderless" %}
+	    <div class="buttons">
+	        <button>Tutorial</button>
+	    </div>
+	{% endsneak_peek %}
 
 === Inline
+Sets <code>display: inline;</code>
+
+	{% sneak_peek "borderless inline" %}
+	    <div class="buttons">
+	        <button>Tutorial</button>
+	    </div>
+	{% endsneak_peek %}
 
 === Inline-Block
+Sets <code>display: inline-block;</code>
 
-
-== CSS Class Modifiers
-* Default: Yellow & black "under construction" border
-* <code>.outline</code>: Sets <code>border: none;</code> and uses an <code>outline</code> instead
-* <code>.borderless</code>: Sets <code>border: none;</code>. Markup will appear without superfluous extra styles applied by <code>django-sneak-peek</code>, but will still be surrouded by an <code><div></code> wrapper (as always).
-* <code>.inline</code>: Sets <code>display: inline;</code>
-* <code>.inline-block</code>: Sets <code>display: inline-block;</code>
+	{% sneak_peek "default inline-block" %}
+	    <div class="buttons">
+	        <button>Tutorial</button>
+	    </div>
+	{% endsneak_peek %}
 
 
 == Customising
