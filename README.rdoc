@@ -1,5 +1,5 @@
 = django-sneak-peek
-## Description ##
+A Django template tag that allows you to hide pre-release features but make them available to a select group of users. By adding the "sneak peek" permission to users on your site, you can allow people within your company or trusted individuals to try out and experiment with upcoming features in your application.
 
 
 == Requirements
