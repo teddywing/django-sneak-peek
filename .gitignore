@@ -8,3 +8,7 @@ Resources/
 
 # Database
 *.sqlite3
+
+
+# Static
+examples/djangoproject/static/
