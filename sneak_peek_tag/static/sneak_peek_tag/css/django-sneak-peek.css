@@ -20,3 +20,7 @@
 .django-sneak-peek.inline {
 	display: inline;
 }
+
+.django-sneak-peek.inline-block {
+	display: inline-block;
+}
