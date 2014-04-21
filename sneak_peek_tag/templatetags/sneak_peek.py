@@ -10,9 +10,11 @@ def sneak_peek(parser, token):
         tag, style = token.split_contents()
     except ValueError:
         pass
+    if not (style[0] == style[-1] and style[0] in ('"', "'")):
+        raise template.TemplateSyntaxError("%r tag's argument should be in quotes" % tag)
     nodelist = parser.parse(('endsneak_peek',))
     parser.delete_first_token()
-    return SneakPeekWrapper(nodelist, style)
+    return SneakPeekWrapper(nodelist, style[1:-1])
 
 
 class SneakPeekWrapper(Node):
