@@ -156,3 +156,4 @@ This custom class can be applied with:
 
 
 ## License
+Licensed under the MIT License. See the included LICENSE file.
