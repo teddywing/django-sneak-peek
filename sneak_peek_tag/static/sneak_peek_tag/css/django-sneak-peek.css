@@ -16,3 +16,7 @@
 .django-sneak-peek.borderless {
 	border: none;
 }
+
+.django-sneak-peek.inline {
+	display: inline;
+}
