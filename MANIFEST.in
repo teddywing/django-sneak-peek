@@ -1,4 +1,4 @@
-include README.md LICENSE
+include README.md LICENSE CHANGELOG
 recursive-include docs *
 
 recursive-include sneak_peek_tag/static *
