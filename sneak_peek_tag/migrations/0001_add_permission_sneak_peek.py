@@ -7,12 +7,12 @@ from django.db import models
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        content_type, c = \
-            orm['contenttypes.ContentType'].objects.get_or_create(
+        content_type = \
+            orm['contenttypes.ContentType'].objects.create(
                 name='sneak peek permission',
                 app_label='sneak_peek_tag')
 
-        orm['auth.Permission'].objects.get_or_create(
+        orm['auth.Permission'].objects.create(
             name='can view sneak peek',
             content_type=content_type,
             codename='can_view_sneak_peek')
