@@ -140,11 +140,12 @@ Preferred for inline-block elements. Sets `display: inline-block;` on the sneak 
 ## Customising
 As you may have guessed, you can add custom display styles to `django-sneak-peek`. In addition to overriding the existing CSS classes, you can also create your own.
 
+The `sneak_peek` template tag argument is passed directly to the `class` attribute of the sneak peek wrapper `<div>`.
+
 Here's an example of a class you can add to your CSS to add custom styles to a sneak peek element:
 
 	.django-sneak-peek.green-border {
-	    border-color: green;
-	    border-width: 5px;
+	    border: 5px solid green;
 	}
 
 This custom class can be applied with:
