@@ -90,6 +90,8 @@ By default, markup under sneak peek will appear with a yellow & black "under con
 	    </div>
 	{% endsneak_peek %}
 
+![Default](./docs/screenshots/default.png)
+
 ### Outline
 Sets `border: none;` and uses an `outline` instead
 
@@ -98,6 +100,8 @@ Sets `border: none;` and uses an `outline` instead
 	        <button>Tutorial</button>
 	    </div>
 	{% endsneak_peek %}
+
+![Outline](./docs/screenshots/outline.png)
 
 ### Borderless
 Sets `border: none;`. Markup will appear without superfluous extra styles applied by `django-sneak-peek`, but will still be surrouded by an `<div>` wrapper (as always).
@@ -108,6 +112,8 @@ Sets `border: none;`. Markup will appear without superfluous extra styles applie
 	    </div>
 	{% endsneak_peek %}
 
+![Borderless](./docs/screenshots/borderless.png)
+
 ### Inline
 Sets `display: inline;`
 
@@ -117,6 +123,8 @@ Sets `display: inline;`
 	    </div>
 	{% endsneak_peek %}
 
+![Inline](./docs/screenshots/inline.png)
+
 ### Inline-Block
 Sets `display: inline-block;`
 
@@ -125,6 +133,8 @@ Sets `display: inline-block;`
 	        <button>Tutorial</button>
 	    </div>
 	{% endsneak_peek %}
+
+![Inline-Block](./docs/screenshots/inline-block.png)
 
 
 ## Customising
