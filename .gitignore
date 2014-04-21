@@ -6,6 +6,12 @@ Resources/
 *.pyc
 
 
+# Distribution
+django_sneak_peek.egg-info
+build/
+dist/
+
+
 # Database
 *.sqlite3
 
