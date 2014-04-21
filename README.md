@@ -77,12 +77,12 @@ To allow a user to view sneak peek content, add this permission to their account
 
 
 ## Additional Options
-Sneak peek works by wrapping your code in a `<div>` and applying styles to that wrapper with the `.django-sneak-peek` class and several modifiers. Modifiers change the appearance of the sneak peek block.
+Sneak peek works by wrapping your code in a `<div>` and applying styles to that wrapper with the `.django-sneak-peek` class and several modifiers. Modifiers change the appearance of the sneak peek block. These modifier classes are read from the argument passed into the template tag.
 
-Here are the available modifiers and different combinations thereof.
+Here are the available modifiers including some combinations thereof.
 
 ### Default
-By default, markup under sneak peek will appear with a yellow & black "under construction" border.
+By default, markup will appear with a yellow & black "under construction" border. This style can also be applied explicitly by passing it as an argument (`{% sneak_peek "default" %}`).
 
 	{% sneak_peek %}
 	    <div class="buttons">
@@ -93,7 +93,7 @@ By default, markup under sneak peek will appear with a yellow & black "under con
 ![Default](./docs/screenshots/default.png)
 
 ### Outline
-Sets `border: none;` and uses an `outline` instead
+Uses an `outline` instead of a border for less box model interference.
 
 	{% sneak_peek "outline" %}
 	    <div class="buttons">
@@ -104,7 +104,7 @@ Sets `border: none;` and uses an `outline` instead
 ![Outline](./docs/screenshots/outline.png)
 
 ### Borderless
-Sets `border: none;`. Markup will appear without superfluous extra styles applied by `django-sneak-peek`, but will still be surrouded by an `<div>` wrapper (as always).
+Markup appears without superfluous extra styles applied by `django-sneak-peek`, but will still be surrouded by an `<div>` wrapper (as always). This allows for a more representative view of the sneak peek element on the page.
 
 	{% sneak_peek "borderless" %}
 	    <div class="buttons">
@@ -115,7 +115,7 @@ Sets `border: none;`. Markup will appear without superfluous extra styles applie
 ![Borderless](./docs/screenshots/borderless.png)
 
 ### Inline
-Sets `display: inline;`
+Allows for easier display of inline elements by setting `display: inline;` on the sneak peek wrapper `<div>`.
 
 	{% sneak_peek "borderless inline" %}
 	    <div class="buttons">
@@ -126,7 +126,7 @@ Sets `display: inline;`
 ![Inline](./docs/screenshots/inline.png)
 
 ### Inline-Block
-Sets `display: inline-block;`
+Preferred for inline-block elements. Sets `display: inline-block;` on the sneak peek wrapper `<div>`.
 
 	{% sneak_peek "default inline-block" %}
 	    <div class="buttons">
