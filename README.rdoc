@@ -1,0 +1,103 @@
+= django-sneak-peek
+## Description ##
+
+
+== Requirements
+Requires Django 1.4 or higher. Currently not configured for Django 1.7, but I'll be updating the package to add support for it once released.
+
+{South}[https://pypi.python.org/pypi/South/0.8.4] is required for migrations. <code>django-sneak-peek</code> includes a data migration that adds a <code>ContentType</code> and <code>Permission</code>. The permission is used to determine whether or not a user can view sneak peek content.
+
+
+== Installation
+1. Install via <code>pip</code>:
+
+	$ pip install django-sneak-peek
+
+2. Add <code>sneak_peek_tag</code> to <code>INSTALLED_APPS</code> in <code>settings.py</code>:
+
+	INSTALLED_APPS = (
+	    ...
+	    'sneak_peek_tag',
+	    ...
+	)
+
+3. Run migrations:
+
+	$ python manage.py migrate sneak_peek_tag
+
+4. Run <code>collectstatic</code> to grab the CSS and image:
+
+	$ python manage.py collectstatic
+
+
+== Usage
+<code>django-sneak-peek</code> defines a template tag called <code>sneak_peek</code>. Markup that you want to conditionally hide gets wrapped in this template tag.
+
+Add the <code>django-sneak-peek</code> CSS file to all pages where you plan to use the template tag:
+
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}sneak_peek_tag/css/django-sneak-peek.css" />
+
+Load <code>sneak_peek</code> in your template:
+
+	{% load sneak_peek %}
+
+Wrap secret markup in <code>sneak_peek</code> tags:
+
+	{% sneak_peek %}
+	    <div>
+	        <h1>Secret pre-release feature</h1>
+	        
+	        <p>
+	            This entire div is hidden from users who don't have the 
+	            sneak_peek permission.
+	        </p>
+	    </div>
+	{% endsneak_peek %}
+
+
+== Additional Options
+By default, markup under sneak peek will appear with a yellow and black "under construction" border:
+
+## Screenshot ##
+
+Sneak peek works by wrapping your code in a <code><div></code> and applying styles to that element with the <code>.django-sneak-peek</code> class and several modifiers.
+
+Modifiers change the appearance of the sneak peek block.
+
+Here are the available modifiers and different combinations thereof.
+
+=== Outline
+
+=== Borderless
+
+=== Inline
+
+=== Inline-Block
+
+
+== CSS Class Modifiers
+* Default: Yellow & black "under construction" border
+* <code>.outline</code>: Sets <code>border: none;</code> and uses an <code>outline</code> instead
+* <code>.borderless</code>: Sets <code>border: none;</code>. Markup will appear without superfluous extra styles applied by <code>django-sneak-peek</code>, but will still be surrouded by an <code><div></code> wrapper (as always).
+* <code>.inline</code>: Sets <code>display: inline;</code>
+* <code>.inline-block</code>: Sets <code>display: inline-block;</code>
+
+
+== Customising
+As you may have guessed, you can add custom display styles to <code>django-sneak-peek</code>. In addition to overriding the existing CSS classes, you can also create your own.
+
+Here's an example of a class you can add to your CSS to add custom styles to a sneak peek element:
+
+	.django-sneak-peek.green-border {
+	    border-color: green;
+	    border-width: 5px;
+	}
+
+This custom class can be applied with:
+
+	{% sneak_peek "green-border" %}
+	    ...
+	{% endsneak_peek %}
+
+
+== License
