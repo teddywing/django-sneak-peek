@@ -18,7 +18,7 @@ setup(
     long_description=(
         read('README.md') + '\n\n' +
         read('CHANGELOG')),
-    url='',
+    url='https://github.com/teddywing/django-sneak-peek',
     license='MIT',
     author='Teddy Wing',
     author_email='pypi@teddywing.com',
